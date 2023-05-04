@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activites</title>
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/CSS/home_style.css">
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-sm fixed-top navbar-light">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a href="#" class="navbar-brand mr-auto"><img src="/img/logo.png" alt="Health-e-Locker" height="35"
+                    width="60"><span class="text-white"> Medi-Locker</span></a>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <nav class="navbar-nav">
+                    <a href="/dashboard" class="nav-link text-white">Dashboard</a>
+                    <button class="btn btn-dark m-auto" type="button">Logout</button>
+                </nav>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+            <div class="row card my-3">
+                <a href="/newactivity">
+                    <div class="card-body card-align">
+                        <h5 class="card-title">Add Activity</h5>
+                    </div>
+                </a>
+            </div>
+            <div class="row card my-3">
+                <div class="card-body card-align">
+                    <h5 class="card-title">All Activities</h5>
+                </div>
+            </div>
+            <div class="row card my-4">
+                <div class="card-header">
+                    Activities
+                </div>
+                <% activities.forEach((activity)=>{%>
+                <div class="card-body">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title">Activity - <%=activity.activityType%></h5>
+                    </div>
+                    <p class="card-subtitle">Start Date - <%=activity.startDate%></p>
+                    <p class="card-text">Start Time - <%=activity.startTime%></p>
+                    <p class="card-text">Duration - <%=activity.duration%></p>
+                    <p class="card-text">Note - <%=activity.note%></p>
+                </div>
+                <%});%>
+            </div>
+            <!-- <div class="card" >
+                <img class="card-img-top py-3 pl-3" src="/img/sleep.jpg" alt="Card image cap" style="width: 95%;">
+                <div class="card-body">
+                    <h5 class="card-title">Sleep</h5>
+                    <p class="card-text">Details</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 3 mins ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <img class="card-img-top" src="/img/running.svg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">Running</h5>
+                    <p class="card-text">Details</p>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">Last updated 10 mins ago</small>
+                </div>
+            </div>
+            <div class="card">
+                <a href="/newactivity">
+
+                    <img class="card-img-top py-3 pl-3" src="/img/plus.png" alt="Card image cap" style="width: 95%;">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Add New Activity</h5>
+                    
+                </div>
+                
+            </div> -->
+    </div>
+
+</body>
+
+</html>

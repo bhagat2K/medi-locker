@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+        integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+
+    <!-- Bootstrap CSS -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="/CSS/login.css">
+    <title>Medi-Locker Sign Up</title>
+</head>
+
+</head>
+
+<body>
+    <div>
+        <div class="figure ml-5 mt-3">
+
+            <img src="/img/logo.png" alt="" height="70px" class="figure-img pl-3">
+            <div class="fig-caption text-muted pl-1"> Medi-Locker</div>
+        </div>
+
+    </div>
+    <h2 class="text-center">Sign Up</h2>
+
+    <form id="signUpForm" action="/signup" method="POST">
+
+        <div class="container">
+            <label for="userType"><b>I am: </b></label>
+            <select name="userType" required id="userType">
+                <option value="0">Patient</option>
+                <option value="1">Doctor</option>
+            </select>
+        </br>
+            <label for="uname"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="username" required id="username">
+
+            <label for="password"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="password" required id="password">
+
+            <label for="repsw"><b>Re-Enter Password</b></label>
+            <input type="password" placeholder="Re-Enter Password" name="repsw" id="repswd" required>
+
+            <label for="email"><b>Email Id</b></label>
+            <input type="email" placeholder="one@example.com" name="email" required id="email">
+
+            <label for="phone"><b>Phone Number</b></label>
+            <input type="phone" placeholder="Enter Phone Number" name="phone" id="phone" required>
+
+
+            <button  class="text-uppercase btn btn-success" id="signupBtn">sign up</button>
+
+        </div>
+        <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class=" btn-danger btn " onclick="window.location.href = '/home'">
+                Cancel
+            </button>
+        </div>
+
+    </form>
+
+    <script src="/JS/signup.js"></script>
+
+</body>
+
+</html>

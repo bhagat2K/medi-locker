@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+
+    <!-- <link rel="stylesheet" href="/bootstrap-social/bootstrap-social.css"> -->
+    
+    <title>Doctor's Dashboard</title>
+</head>
+<body>
+
+    <form id="otp-form">
+  <input type="text" placeholder="Enter Patient ID" name="patientId" id="patientId"/>
+  <input type="submit" value="Get Access"/>
+</form>
+    <!-- Add this HTML code to your doctor-dashboard page -->
+<!-- The modal will be hidden by default -->
+<div class="modal fade" id="otpVerifyModal" tabindex="-1" aria-labelledby="otpModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="otpModalLabel">Verify OTP</h5>
+        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Please enter the OTP that was sent to your phone number:</p>
+        <form id="otp-verify-form">
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Enter OTP" name="otp" id="otp">
+          </div>
+          <button type="submit" class="btn btn-primary">Verify</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+
+// code for sending otp
+  const otpForm = document.querySelector('#otp-form');
+otpForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the default form submission
+  const patientId = document.querySelector('#patientId').value; // get the patient ID from the input field
+
+  // send an AJAX POST request to /sendOtp with the patient ID
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', '/sendOtp');
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.onload = function() {
+    if (xhr.status === 200) {
+      alert(xhr.responseText); // display the response message
+      $('#otpVerifyModal').modal('show');
+
+    } else {
+      console.error(xhr.statusText);
+      alert('Error sending OTP');
+    }
+  };
+  xhr.onerror = function() {
+    console.error(xhr.statusText);
+    alert('Error sending OTP');
+  };
+  xhr.send(JSON.stringify({ patientId }));
+});
+
+
+//code for verifying otp
+
+  const otpVerifyForm = document.querySelector('#otp-verify-form');
+otpVerifyForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // prevent the default form submission
+  const otp = document.querySelector('#otp').value; // get the OTP from the input field
+    const patientId = document.querySelector('#patientId').value;
+  // send an AJAX POST request to /verifyOtp with the OTP
+  fetch('/verifyOtp', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    
+    body: JSON.stringify({ otp, patientId })
+  })
+  .then(response => {
+    if (response.ok) {
+         document.querySelector('#otpVerifyModal').classList.remove('show');
+    document.querySelector('.modal-backdrop').classList.remove('show');
+    document.querySelector('.modal-backdrop').remove();
+     const patientId = document.querySelector('#patientId').value;
+     window.location.href = '/viewPatientData/'+patientId;
+ // hide the modal after verification is successful
+      alert('OTP verification successful'); // display the success message
+    } else {
+      throw new Error('Error verifying OTP');
+    }
+    // console.log(response)
+  })
+  .catch(error => {
+    console.error(error);
+    alert('Error verifying OTP');
+  });
+});
+
+
+</script>
+
+</body>
+</html>
+
+
+
